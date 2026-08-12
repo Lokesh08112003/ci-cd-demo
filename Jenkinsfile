@@ -31,9 +31,8 @@ pipeline {
 
         stage('Run Application') {
             steps {
-                bat 'echo JAVA_HOME=%JAVA_HOME%'
-                bat 'where java'
-                bat 'java -version'
+                bat 'start "" /B "%JAVA_HOME%\\bin\\java.exe" -jar deploy\\ci-cd-demo-1.0-SNAPSHOT.jar'
+                echo 'Application started successfully!'
             }
         }
     }
