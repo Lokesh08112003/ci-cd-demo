@@ -20,15 +20,24 @@ pipeline {
                 bat 'mvn package -DskipTests'
             }
         }
+
+        stage('Deploy') {
+            steps {
+                bat 'if not exist deploy mkdir deploy'
+                bat 'copy /Y target\\ci-cd-demo-1.0-SNAPSHOT.jar deploy\\'
+                echo 'JAR deployed successfully!'
+            }
+        }
     }
 
     post {
         success {
-            echo 'CI Pipeline completed successfully!'
+            echo 'CI/CD Pipeline completed successfully!'
         }
 
         failure {
-            echo 'CI Pipeline failed!'
+            echo 'CI/CD Pipeline failed!'
         }
     }
 }
+
