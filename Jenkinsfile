@@ -28,6 +28,13 @@ pipeline {
                 echo 'JAR deployed successfully!'
             }
         }
+
+        stage('Run Application') {
+            steps {
+                bat 'start "" /B java -jar deploy\\ci-cd-demo-1.0-SNAPSHOT.jar'
+                echo 'Application started successfully!'
+            }
+        }
     }
 
     post {
@@ -40,4 +47,3 @@ pipeline {
         }
     }
 }
-
